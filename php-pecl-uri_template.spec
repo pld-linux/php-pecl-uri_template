@@ -13,6 +13,7 @@ Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 # Source0-md5:	652dbdb85da3c820f369526155355522
 URL:		http://pecl.php.net/package/uri_template
+%{?with_tests:BuildRequires:    %{php_name}-cli}
 BuildRequires:	%{php_name}-devel >= 4:5.3.1
 BuildRequires:	rpmbuild(macros) >= 1.666
 %{?requires_php_extension}
@@ -29,6 +30,20 @@ mv %{modname}-%{version}/* .
 phpize
 %configure
 %{__make}
+
+%if %{with tests}
+# simple module load test
+%{__php} -n -q \
+	-d extension_dir=modules \
+	-d extension=%{modname}.so \
+	-m > modules.log
+grep %{modname} modules.log
+
+export NO_INTERACTION=1 REPORT_EXIT_STATUS=1 MALLOC_CHECK_=2
+unset TZ LANG LC_ALL || :
+%{__make} test \
+	PHP_EXECUTABLE=%{__php}
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
