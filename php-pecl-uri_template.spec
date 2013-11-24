@@ -7,7 +7,7 @@
 Summary:	Implementation of URI Template(RFC6570) specification for PHP
 Name:		%{php_name}-pecl-%{modname}
 Version:	1.0
-Release:	1
+Release:	2
 License:	PHP 3.01
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
@@ -17,6 +17,7 @@ URL:		http://pecl.php.net/package/uri_template
 BuildRequires:	%{php_name}-devel >= 4:5.3.1
 BuildRequires:	rpmbuild(macros) >= 1.666
 %{?requires_php_extension}
+Provides:	php(%{modname}) = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
