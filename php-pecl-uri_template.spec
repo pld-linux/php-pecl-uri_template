@@ -15,7 +15,7 @@ Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 URL:		http://pecl.php.net/package/uri_template
 %{?with_tests:BuildRequires:    %{php_name}-cli}
 BuildRequires:	%{php_name}-devel >= 4:5.3.1
-BuildRequires:	rpmbuild(macros) >= 1.666
+BuildRequires:	rpmbuild(macros) >= 1.686
 %{?requires_php_extension}
 Provides:	php(%{modname}) = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
